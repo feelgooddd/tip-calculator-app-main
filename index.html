@@ -30,7 +30,10 @@
           />
         </section>
         <section class="tip">
-          <p class="heading-text">Select Tip %</p>
+          <div class="tip-text">
+            <p class="heading-text">Select Tip %</p>
+            <p class="hidden" id="invalid-amount">Invalid amount</p>
+          </div>
           <div class="tip-buttons">
             <button onclick="tipFive()" class="tip-button">5%</button
             ><button onclick="tipTen()" class="tip-button">10%</button
@@ -48,7 +51,7 @@
         <section class="people">
           <div class="people-text">
             <p class="heading-text">Number of People</p>
-            <p class="hidden">Can't be zero</p>
+            <p class="hidden" id="invalid-number-of-people">Can't be zero</p>
           </div>
           <input
             type="text"

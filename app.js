@@ -2,6 +2,8 @@ const tipButton = document.querySelectorAll(".tip-button");
 const inputCustom = document.getElementById("custom-tip");
 const inputBillAmount = document.getElementById("bill-amount");
 const inputNumberOFPeople = document.getElementById("number-of-people");
+const invalidBill = document.getElementById("invalid-amount");
+const invalidPeople = document.getElementById("invalid-number-of-people");
 
 let totalAmount = document.getElementById("total-amount");
 let tipAmount = document.getElementById("tip-amount");
@@ -11,22 +13,31 @@ inputBillAmount.addEventListener("input", tipCustom);
 inputNumberOFPeople.addEventListener("input", tipCustom);
 
 function calculateTip(tip, numberOfPeople) {
-  let billInput = document.getElementById("bill-amount").value;
+  let billInput = Number(document.getElementById("bill-amount").value);
   let tipAmount = document.getElementById("tip-amount");
-  tipAmount.textContent =
-    "$" + Number((billInput * tip) / numberOfPeople).toFixed(2);
-  console.log(tipAmount.textContent);
-  console.log(billInput);
+
+  invalidBill.classList.add("hidden");
+  invalidPeople.classList.add("hidden");
+  tipAmount.textContent = "$" + ((billInput * tip) / numberOfPeople).toFixed(2);
+
+  numberOfPeople = parseFloat(numberOfPeople);
+
+  handleUserInputError(tipAmount);
+  handleBillInputError();
+  if (isNaN(billInput)) {
+    invalidBill.classList.remove("hidden");
+  }
+  if (isNaN(numberOfPeople)) {
+    invalidPeople.classList.remove("hidden");
+  }
 }
 function calculateTotal(tipAmount, numberOfPeople) {
   let billInput = document.getElementById("bill-amount").value;
   let totalAmount = document.getElementById("total-amount");
   totalAmount.textContent =
     "$" + Number((billInput * tipAmount) / numberOfPeople).toFixed(2);
+  handleUserInputError(totalAmount);
   //debugging consolelogs
-  console.log(totalAmount.textContent);
-  console.log(billInput);
-  console.log(tipAmount);
 }
 function tipFive() {
   let numberOfPeople = document.getElementById("number-of-people").value;
@@ -54,11 +65,11 @@ function tipFifty() {
   calculateTotal(1.5, numberOfPeople);
 }
 function tipCustom() {
-  let tipAmount = document.getElementById("custom-tip").value / 100;
+  let customTipAmount = document.getElementById("custom-tip").value / 100;
   let numberOfPeople = document.getElementById("number-of-people").value;
 
-  calculateTip(tipAmount, numberOfPeople);
-  calculateTotal(1 + tipAmount, numberOfPeople);
+  calculateTip(customTipAmount, numberOfPeople);
+  calculateTotal(1 + customTipAmount, numberOfPeople);
 }
 
 function resetNumbers() {
@@ -69,3 +80,17 @@ function resetNumbers() {
   tipAmount.textContent = "$0.00";
   console.log("meow");
 }
+function handleUserInputError(tipAmount) {
+  if (
+    tipAmount.textContent === "$NaN" ||
+    totalAmount.textContent === "$NaN" ||
+    tipAmount.textContent === "$Infinity" ||
+    totalAmount.textContent === "$Infinity"
+  ) {
+    tipAmount.textContent = "$0.00";
+    totalAmount.textContent = "$0.00";
+    console.log("meow");
+  }
+}
+
+function handleBillInputError(billAmount) {}

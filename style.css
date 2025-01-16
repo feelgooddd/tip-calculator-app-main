@@ -3,6 +3,8 @@
 :root {
   --clr-primary-400: hsl(172, 67%, 45%);
 
+  --clr-accent-400: hsl(10, 47%, 59%);
+
   --clr-neutral-600: hsl(183, 100%, 15%);
   --clr-neutral-500: hsl(186, 14%, 43%);
   --clr-neutral-400: hsl(186, 14.3%, 56.1%);
@@ -50,6 +52,7 @@ input {
 .people {
   margin-bottom: 20px;
 }
+.tip-text,
 .people-text {
   display: flex;
   justify-content: space-between;
@@ -121,7 +124,7 @@ input {
   background-image: url(./images/icon-person.svg);
 }
 #number-of-people:focus {
-  outline: 2px solid hsl(10, 47%, 59%);
+  outline: 2px solid var(--clr-accent-400);
 }
 .small {
   font-size: 0.55rem;
@@ -132,6 +135,10 @@ input {
 
 .hidden {
   display: none;
+}
+#invalid-amount,
+#invalid-number-of-people {
+  color: var(--clr-accent-400);
 }
 .tip-amount,
 .total-amount {

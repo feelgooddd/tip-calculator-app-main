@@ -12,6 +12,19 @@ inputCustom.addEventListener("input", tipCustom);
 inputBillAmount.addEventListener("input", tipCustom);
 inputNumberOFPeople.addEventListener("input", tipCustom);
 
+const root = document.documentElement;
+const primary400 = getComputedStyle(root).getPropertyValue("--clr-primary-400");
+const accent400 = getComputedStyle(root).getPropertyValue("--clr-accent-400");
+const neutral600 = getComputedStyle(root).getPropertyValue("--clr-neutral-600");
+const neutral500 = getComputedStyle(root).getPropertyValue("--clr-neutral-500");
+const neutral400 = getComputedStyle(root).getPropertyValue("--clr-neutral-400");
+const neutral300 = getComputedStyle(root).getPropertyValue("--clr-neutral-300");
+const neutral200 = getComputedStyle(root).getPropertyValue("--clr-neutral-200");
+const neutral100 = getComputedStyle(root).getPropertyValue("--clr-neutral-100");
+5;
+
+const colourCheckbox = document.getElementById("colourCheckBox");
+
 function calculateTip(tip, numberOfPeople) {
   let billInput = Number(document.getElementById("bill-amount").value);
   let tipAmount = document.getElementById("tip-amount");
@@ -24,6 +37,7 @@ function calculateTip(tip, numberOfPeople) {
 
   handleUserInputError(tipAmount);
   handleBillInputError();
+
   if (isNaN(billInput)) {
     invalidBill.classList.remove("hidden");
   }
@@ -94,3 +108,33 @@ function handleUserInputError(tipAmount) {
 }
 
 function handleBillInputError(billAmount) {}
+
+function changeColourScheme() {
+  root.style.setProperty("--clr-primary-400", "hsl(199, 100.00%, 18.00%)");
+  root.style.setProperty("--clr-accent-400", "hsl(248, 27.60%, 43.30%");
+  root.style.setProperty("--clr-neutral-600", "hsl(295, 28.30%, 43.70%");
+  root.style.setProperty("--clr-neutral-500", "hsl(324, 44.60%, 52.50%");
+  root.style.setProperty("--clr-neutral-400", "hsl(346, 66.70%, 61.20%");
+  root.style.setProperty("--clr-neutral-300", "hsl(1, 100.00%, 69.00%)");
+  root.style.setProperty("--clr-neutral-200", "hsl(24, 100.00%, 59.60%");
+  root.style.setProperty("--clr-neutral-100", "hsl(39, 100.00%, 50.00%");
+}
+
+function revertColourScheme() {
+  root.style.setProperty("--clr-primary-400", primary400);
+  root.style.setProperty("--clr-accent-400", accent400);
+  root.style.setProperty("--clr-neutral-600", neutral600);
+  root.style.setProperty("--clr-neutral-500", neutral500);
+  root.style.setProperty("--clr-neutral-400", neutral400);
+  root.style.setProperty("--clr-neutral-300", neutral300);
+  root.style.setProperty("--clr-neutral-200", neutral200);
+  root.style.setProperty("--clr-neutral-100", neutral100);
+}
+
+colourCheckbox.addEventListener("change", function () {
+  if (this.checked) {
+    changeColourScheme();
+  } else {
+    revertColourScheme();
+  }
+});

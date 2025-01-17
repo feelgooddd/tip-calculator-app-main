@@ -132,10 +132,10 @@ input {
   opacity: 0.5;
   letter-spacing: 1px;
 }
-
 .hidden {
   display: none;
 }
+
 #invalid-amount,
 #invalid-number-of-people {
   color: var(--clr-accent-400);
@@ -144,13 +144,13 @@ input {
 .total-amount {
   font-size: 2rem;
   color: var(--clr-primary-400);
+  text-align: right;
 }
 .tip-div,
 .total-div {
   display: grid;
   grid-template-columns: 1fr 1fr;
   color: var(--clr-neutral-100);
-  gap: 3rem;
   line-height: 1.2rem;
 }
 .totals {
@@ -158,7 +158,7 @@ input {
   flex-flow: column;
   position: relative;
   height: 100%;
-  position: relative;
+
   row-gap: 35px;
 }
 
@@ -188,6 +188,8 @@ input {
   justify-content: center;
   margin-bottom: 20px;
 }
+
+/* Media Query to switch to vertical format on smaller resolutions */
 @media only screen and (max-width: 500px) {
   body {
   }
